@@ -22,9 +22,10 @@ def audioFileInput():
         result = model.transcribe(file_path)
         print(result['text'])
         firstAudio = result['text']
-        label1 = tk.Label(root, text="Is this what you said: " + firstAudio)
+        firstAudioNoPunctuation = firstAudio.lower().replace(',', "").replace('.', "")
+        label1 = tk.Label(root, text="Is this what you said: " + firstAudioNoPunctuation)
         label1.pack()
-        resendAndCompare(firstAudio=firstAudio, transcription=file_path)
+        resendAndCompare(firstAudio=firstAudioNoPunctuation, transcription=file_path)
       
 
 def checkIfAudioFile(file):
@@ -63,9 +64,10 @@ def workAudio2(event):
     result = model.transcribe("current_voice.wav")
     print(result['text'])
     firstAudio = result['text']
-    label3 = tk.Label(root, text="Is this what you said: " + firstAudio)
+    firstAudioNoPunctuation = firstAudio.lower().replace(',', "").replace('.', "")
+    label3 = tk.Label(root, text="Is this what you said: " + firstAudioNoPunctuation)
     label3.pack()
-    resendAndCompare(firstAudio=firstAudio, transcription="current_voice.wav")
+    resendAndCompare(firstAudio=firstAudioNoPunctuation, transcription="current_voice.wav")
 
 def resendAndCompare(firstAudio, transcription):
     label4 = tk.Label(root, text="Sending the text to the model again to see if it's accurate")
@@ -73,9 +75,10 @@ def resendAndCompare(firstAudio, transcription):
     model = whisper.load_model('large')
     result = model.transcribe(transcription)
     secondAudio = result['text']
-    label5 = tk.Label(root, text="On a second go: " + secondAudio)
+    secondAudioNoPunctuation = secondAudio.lower().replace(',', "").replace('.', "")
+    label5 = tk.Label(root, text="On a second go: " + secondAudioNoPunctuation)
     label5.pack()
-    if(firstAudio == secondAudio):
+    if(firstAudio == secondAudioNoPunctuation):
         label5 = tk.Label(root, text="They are the same!")
         label5.pack()
         print("they are the same!")
