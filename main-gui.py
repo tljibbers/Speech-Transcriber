@@ -11,9 +11,6 @@ CHANNELS = 1
 RATE = 44100
 p = pyaudio.PyAudio()
 
-
-switcher = False
-
 def audioFileInput():
     #File Explorer gets opened, waiting for an input
     file_path = filedialog.askopenfilename()
@@ -27,7 +24,7 @@ def audioFileInput():
         #stores the text
         firstAudio = result['text']
         #removes punctuation and lowercases the words
-        firstAudioNoPunctuation = firstAudio.lower().replace(',', "").replace('.', "")
+        firstAudioNoPunctuation = firstAudio.lower().replace(',', "").replace('.', "").replace('!', "").replace('?', "")
         #displays text
         label1 = tk.Label(root, text="Is this what you said: " + firstAudioNoPunctuation)
         label1.pack()
@@ -80,7 +77,7 @@ def workAudio2(event):
     #Stores the transcribed text
     firstAudio = result['text']
     #Removes punctuation and lowercases the words
-    firstAudioNoPunctuation = firstAudio.lower().replace(',', "").replace('.', "")
+    firstAudioNoPunctuation = firstAudio.lower().replace(',', "").replace('.', "").replace('!', "").replace('?', "")
     #Displays text
     label3 = tk.Label(root, text="Is this what you said: " + firstAudioNoPunctuation)
     label3.pack()
