@@ -1,7 +1,6 @@
 import tkinter as tk
 from tkinter import filedialog
 from tkinter import Button
-import speech_recognition as sr
 import pyaudio
 import whisper
 import wave
@@ -112,7 +111,7 @@ def resendAndCompare(firstAudio, transcription):
 
 
 
-root = tk.Tk('Test', 'TestAgain', 'TestWindow');
+root = tk.Tk('Test', 'TestAgain', 'Speech Transcriber');
 root.geometry('300x300')
 labeltest = tk.Label(root, text='Press f to record your audio')
 labeltest.pack()
