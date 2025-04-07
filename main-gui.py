@@ -107,15 +107,21 @@ def resendAndCompare(firstAudio, transcription):
         print("they aren't the same!")
 
 
+def createRoot():
+    root = tk.Tk('SpeechTranscriber', 'SpeechT', ' Speech-Transcriber-v1');
+    root.geometry('800x300')
+    root.configure(bg= "#202124")
+    root.resizable(False, False)
+    selectorLabel = tk.LabelFrame(master=root, width=200, height=300, background="#121313")
+    selectorLabel.pack(side='left', fill="both")
+    labeltest = tk.Label(root, text='Press f to record your audio')
+    labeltest.pack()
+    buttonFileInput = Button(root, text='Add Audio File (Wav, Mp3)', command=lambda: audioFileInput())
+    buttonFileInput.pack()
+    root.bind("<KeyPress>", workAudio2)
+    root.mainloop();
 
-root = tk.Tk('Test', 'TestAgain', 'Speech Transcriber');
-root.geometry('300x300')
-labeltest = tk.Label(root, text='Press f to record your audio')
-labeltest.pack()
-button = Button(root, text='Add Audio File (Wav, Mp3)', command=lambda: audioFileInput())
-button.pack()
-root.bind("<KeyPress>", workAudio2)
-root.mainloop();
+createRoot()
 
 
 
